@@ -85,6 +85,7 @@ export function createOIDCRouter(
         ) => void
       ) {
         try {
+          context = (context as any).ctx ?? context;
           // Some providers require a POST request to the userinfo endpoint, add them as exceptions here.
           const usePostMethod = [
             "https://api.dropboxapi.com/2/openid/userinfo",
