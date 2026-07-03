@@ -53,6 +53,8 @@ jobs:
           outputs: type=image,push-by-digest=true,name-canonical=true,push=true
           platforms: linux/arm64
           pull: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Docker meta
         id: meta
@@ -76,6 +78,8 @@ jobs:
           pull: false
           build-args: |
             BASE_IMAGE=${{ env.REGISTRY }}/${{ env.BASE_IMAGE_NAME }}@${{ steps.base_build.outputs.digest }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Export digest
         run: |
@@ -130,6 +134,8 @@ jobs:
           outputs: type=image,push-by-digest=true,name-canonical=true,push=true
           platforms: linux/amd64
           pull: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Docker meta
         id: meta
@@ -153,6 +159,8 @@ jobs:
           pull: false
           build-args: |
             BASE_IMAGE=${{ env.REGISTRY }}/${{ env.BASE_IMAGE_NAME }}@${{ steps.base_build.outputs.digest }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Export digest
         run: |
